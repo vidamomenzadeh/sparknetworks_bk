@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -14,6 +14,7 @@ class CategoriesController extends Controller
     public function index()
     {
         //
+        return Category::all();
     }
 
     /**
@@ -35,6 +36,12 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $category = new Category([
+            'title' => $request->get('title')            
+        ]);
+
+        $category->save();        
+        return response()->json($category, 200);     
     }
 
     /**

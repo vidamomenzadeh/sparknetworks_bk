@@ -8,6 +8,7 @@ class Question extends Model
 {
     //
     protected $fillable = [
+    	'title',
 	    'question',
 	    'category_id',
 	    'type',

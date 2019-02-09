@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Question;
+use App\Category;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -14,6 +15,15 @@ class QuestionsController extends Controller
     public function index()
     {
         //
+        $categories = Category::all();
+        foreach ($categories as $category) {
+            $categoryQuestion =  Question::where('category_id', '=', $category->id)->get();
+            $category->questions = $categoryQuestion;
+            
+           
+        }        
+        
+        return $categories;
     }
 
     /**
@@ -35,6 +45,16 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         //
+    
+        $question = new Question([
+            'title' => $request->input('title'),
+            'category_id' => $request->get('category_id'),
+            'type' => $request->get('type'),
+            'options' => serialize($request->get('options')),
+        ]);
+
+        $question->save();        
+        return response()->json($question, 200);    
     }
 
     /**
