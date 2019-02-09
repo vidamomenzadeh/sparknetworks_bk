@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Category;
+use App\Question;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,8 +14,19 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
-        return Category::all();
+        $categories = Category::all();
+
+        foreach ($categories as $category) {
+            $categoryQuestion =  Question::where('category_id', '=', $category->id)->get();
+            foreach ($categoryQuestion as $question) {
+                $question->options = unserialize($question->options);
+            }
+
+            $category->questions = $categoryQuestion;           
+           
+        }        
+        
+        return $categories;
     }
 
     /**

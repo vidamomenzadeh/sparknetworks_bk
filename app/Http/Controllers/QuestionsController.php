@@ -15,15 +15,13 @@ class QuestionsController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        foreach ($categories as $category) {
-            $categoryQuestion =  Question::where('category_id', '=', $category->id)->get();
-            $category->questions = $categoryQuestion;
-            
-           
+        $questions = Question::all();
+        foreach ($questions as $question) {
+            $options =  unserialize($question->options);
+            $question->options = $options;          
         }        
         
-        return $categories;
+        return $questions;
     }
 
     /**
