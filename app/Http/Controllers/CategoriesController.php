@@ -20,6 +20,9 @@ class CategoriesController extends Controller
             $categoryQuestion =  Question::where('category_id', '=', $category->id)->get();
             foreach ($categoryQuestion as $question) {
                 $question->options = unserialize($question->options);
+                $question->range = unserialize($question->range);
+                $question->has_condition = ($question->has_condition != 0);
+                $question->condition = unserialize($question->condition);
             }
 
             $category->questions = $categoryQuestion;           

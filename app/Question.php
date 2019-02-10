@@ -12,6 +12,9 @@ class Question extends Model
 	    'question',
 	    'category_id',
 	    'type',
-	    'options'
+	    'options',
+	    'has_conditon',
+	    'condition',
+	    'range'
 	];
 }

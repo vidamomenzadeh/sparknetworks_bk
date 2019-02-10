@@ -18,7 +18,16 @@ class QuestionsController extends Controller
         $questions = Question::all();
         foreach ($questions as $question) {
             $options =  unserialize($question->options);
-            $question->options = $options;          
+            $question->options = $options;  
+
+            $has_condition = ($question->has_condition == 0 ? true : false);
+            $question->has_condition = $has_condition;   
+
+            $condition =  unserialize($question->condition);
+            $question->condition = $condition;     
+
+            $range =  unserialize($question->range);
+            $question->range = $range;          
         }        
         
         return $questions;
@@ -48,7 +57,10 @@ class QuestionsController extends Controller
             'title' => $request->input('title'),
             'category_id' => $request->get('category_id'),
             'type' => $request->get('type'),
+            'has_condition' => $request->get('has_condition'),
+            'condition'=> serialize($request->get('condition')),
             'options' => serialize($request->get('options')),
+            'range' => serialize($request->get('range'))
         ]);
 
         $question->save();        
