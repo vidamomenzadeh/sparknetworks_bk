@@ -17,3 +17,4 @@ use Illuminate\Http\Request;
 
 Route::resource('categories', 'CategoriesController');
 Route::resource('questions', 'QuestionsController');
+Route::resource('answers', 'AnswerController');

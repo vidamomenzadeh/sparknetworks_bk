@@ -15,9 +15,8 @@ class Answer extends Migration
     {        
         Schema::create('answer', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('question_id');            
-            $table->integer('user_id');
-            $table->string('anwser');
+            $table->integer('question_id');
+            $table->string('answer');
             $table->timestamps();
         });
     }

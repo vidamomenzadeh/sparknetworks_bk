@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
+    public $table = "answer";
+
     protected $fillable = [
 	    'question_id',
-	    'user_id',
 	    'answer'
 	];
 }
