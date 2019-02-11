@@ -1,7 +1,7 @@
 Backend Part:
 
 - As You mentioned for backend part I choose PHP and laravel framework.
-- You can run and create db with artisan or you can use sql next to readme file.
+- You can run and create db with artisan or you can use sql in sample folder.
 - You can config database name and username, password of mysql on config/database.php file.
 - I just add CORS header to resp for all requests to do not have problem with front end part requests.
 	
